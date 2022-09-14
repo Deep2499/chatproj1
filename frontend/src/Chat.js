@@ -4,7 +4,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-
+ 
   useEffect(()=> {
     function fetchMessages() {
       fetch("http://localhost:3001/api")
