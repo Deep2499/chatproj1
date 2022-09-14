@@ -14,6 +14,10 @@ const io = new Server(server, {
   },
 });
 
+const fs = require('fs');
+const rawData = fs.readFileSync('messages.json');
+const messagesData = JSON.parse(rawData);
+
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
@@ -23,6 +27,11 @@ io.on("connection", (socket) => {
   });
 
   socket.on("send_message", (data) => {
+    messagesData["messages"].push(data)
+       const stringData = JSON.stringify(messagesData, null, 2)
+       fs.writeFile("messages.json", stringData, (err)=> {
+           console.error(err)
+        })
     socket.to(data.room).emit("receive_message", data);
   });
 
@@ -31,7 +40,9 @@ io.on("connection", (socket) => {
   });
 });
 
-
+app.get('/api', (req, res) => {
+  res.json(messagesData);
+});
 
 
 server.listen(3001, () => {
