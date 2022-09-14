@@ -1,7 +1,7 @@
 function sendNotification(message, user) {
     document.onvisibilitychange = ()=> {
       if(document.hidden) {
-        const notification = new Notification("New message from Open Chat", {
+        const notification = new Notification("New Message", {
           icon: "https://cdn-icons-png.flaticon.com/512/733/733585.png",
           body: `@${user}: ${message}`
         })
