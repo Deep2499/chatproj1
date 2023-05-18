@@ -2,7 +2,7 @@ function sendNotification(message, user) {
     document.onvisibilitychange = ()=> {
       if(document.hidden) {
         const notification = new Notification("New Message", {
-          icon: "https://cdn-icons-png.flaticon.com/512/733/733585.png",
+          icon: "https://english.onlinekhabar.com/wp-content/uploads/2021/01/facebook-messenger.jpg",
           body: `@${user}: ${message}`
         })
         notification.onclick = ()=> function() {
